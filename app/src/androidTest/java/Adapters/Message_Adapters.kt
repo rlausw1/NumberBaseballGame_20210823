@@ -2,6 +2,7 @@ package Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.nepplus.jikbang_project_20210820.Datas.RoomData
@@ -30,15 +31,26 @@ class Message_Adapters (
 
         val data = mList[position]
 
-        val priceTxt = row.findViewById<TextView>(R.id.priceTxt)
-        val addressAndFloorTxt = row.findViewById<TextView>(R.id.addressAndFloorTxt)
-        val descriptionTxt = row.findViewById<TextView>(R.id. descriptionTxt)
+        val cpuMessageLayout = row.findViewById(R.id.cpuMessageLayout)
+        val cpuMessageTxt = row.findViewById(R.id.cpuMessageTxt)
+        val userMessageLayout = row.findViewById(R.id.userMessageLayout)
+        val userMessageTxt = row.findViewById(R.id.userMessageTxt)
 
-        descriptionTxt.text = data.getFormattedPrice()
+        if (data.writer == "CPU") {
 
-        descriptionTxt.text = data.description
+            userMessageLayout.visibility = View.GONE
+            cpuMessageTxt.text = data.content
 
-        addressAndFloorTxt.text = "${data.address}, ${data.getFormattedFloor()}"
+        }
+        else {
+
+            cpuMessageLayout.visibility = View.GONE
+            userMessageTxt.text = data.content
+
+
+
+        }
+        }
 
         return row
 
