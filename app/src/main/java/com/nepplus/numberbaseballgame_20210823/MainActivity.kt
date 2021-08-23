@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.nepplus.numberbaseballgame_20210823.Adapters.Message_Adapters
 import com.nepplus.numberbaseballgame_20210823.Datas.MessageData
@@ -151,9 +152,67 @@ class MainActivity : AppCompatActivity() {
 
         //고정된 세개 숫자를 임시 문제로
 
-        mQuestionNumers.add(4)
-        mQuestionNumers.add(7)
-        mQuestionNumers.add(1)
+//        mQuestionNumers.add(4)
+//        mQuestionNumers.add(7)
+//        mQuestionNumers.add(1)
+
+        //랜덤한 3개 숫자를 진짜 문제로
+        //1~9 숫자만 사용
+        //이미 나온 숫자는 또 나오면 안됨
+
+        for ( i in 0..2) {
+
+            while (true) {
+
+                //1~9사이의 랜덤정수 추출
+                val rendomNum = ( Math.random()*9 +1).toInt()
+
+                //mQuestion 에 이미 들어있는지 검사
+
+                var isDuplOK = true
+
+                for ( num in mQuestionNumers ) {
+
+
+                    if (num == rendomNum ) {
+
+                        isDuplOK = false
+
+                        //중복된 숫자 발견 => 쓰면 안된다
+
+
+
+
+                    }
+
+
+
+            }
+
+
+
+              if (isDuplOK) {
+
+                  mQuestionNumers.add( rendomNum )
+                  //무한반복 탈출
+
+                  break
+
+              }
+
+        }
+
+            for ( num in mQuestionNumers ) {
+                Log.d("출제된숫자", num.toString()) }
+
+            }
+
+        }
+
+
+
+
+
 
         //환영메세지를 채팅창에 채우자
         //메세지 리스트에 띄어줄 말을 데이터를 추가하자
