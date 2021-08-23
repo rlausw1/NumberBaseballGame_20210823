@@ -33,8 +33,25 @@ class MainActivity : AppCompatActivity() {
         mMessageList.add( MessageData("안녕하세요", "CPU"))
         mMessageList.add( MessageData("반갑습니다", "User"))
 
-        madapter = MessageAdapter(this, R.layout, Message_list_item, mMessageList)
-        messageListView.adapter
+        mAdapter = MessageAdapter(this, R.layout, Message_list_item, mMessageList)
+        messageListView.adapter = mAdapter
+
+        okBtn.setOnClickListener {
+
+            val inputNumStr = numberEdt.text.toString()
+
+            val msg = MessageData( inputNumStr, "USER")
+
+            mMessageList.add(msg)
+
+            mAdapter.notifyDataSetChanged()
+
+            //numberEdt 문구 비워
+
+            numberEdt.setText("")
+
+
+        }
 
 
 
