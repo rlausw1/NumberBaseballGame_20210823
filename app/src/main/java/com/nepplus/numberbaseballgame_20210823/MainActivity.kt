@@ -60,7 +60,69 @@ class MainActivity : AppCompatActivity() {
             messageListView.smoothScrollToPosition(mMessageList.size -1)
 
 
+            //컴퓨터가 ?S, ?B 인지 판단해서 메세지 추가 (답장)
+            checkAnswer()
+
+
         }
+
+
+    }
+
+    fun checkAnswer(inputNum : Int) {
+
+        //사람이 입력한 숫자가 ?S ?B 인지 판단하는 함수
+        //사람이 입력한 숫자를 => 각 자리별로 나눠서 => 목록에 대답.
+
+        val userInputNumArr = ArrayList<Int>()
+
+        userInputNumArr.add(  inputNum / 100   ) //100자리가 몇?
+        userInputNumArr.add(  inputNum / 10 %  10   )
+        userInputNumArr.add(  inputNum % 10   )
+
+        var strikeCount = 0
+        var ballCount = 0
+
+
+
+        for ( i in0..2 ){
+
+            for ( j in 0..2) {
+
+                //내가 입력한 숫자 i번째랑 , 컴푸터가 낸 숫자 i번째가 같은 값인가?
+
+                if ( userInputNumArr[i] == mQuestionNumers[j] ) {
+
+                    //같은 숫자를 찾았다
+                    //위치도 같은 위치였는지> 같으면 s, 다르면 b
+
+                    if ( i==j ) {
+                        strikeCount++
+
+                        else {
+
+                            ballCount++
+
+
+                        }
+                    }
+
+
+                }
+
+
+            }
+
+
+        }
+
+        //컴퓨터가 값을 말하는 처리 ?s ?b
+
+        mMessageList.add( MessageData( "${strikeCount}S ${ballCount}B 입니다."))
+
+        mAdapter.notifyDataSetChanged()
+        messageListView.smoothScrollToPosition(mMessageList.size - 1)
+
 
 
     }
@@ -79,6 +141,9 @@ class MainActivity : AppCompatActivity() {
          mMessageList.add(MessageData("어서오세요", "CPU"))
         mMessageList.add(MessageData("숫자 야구 게임입니다", "CPU"))
         mMessageList.add(MessageData("세자리 숫자를 맞춰주세요", "CPU"))
+
+
+
 
 
 
