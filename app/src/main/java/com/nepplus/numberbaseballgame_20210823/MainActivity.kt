@@ -1,5 +1,16 @@
 package com.nepplus.numberbaseballgame_20210823
 
+
+class MessageData(
+    val content : String
+    val writer : String ) {
+
+
+
+
+}
+
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
