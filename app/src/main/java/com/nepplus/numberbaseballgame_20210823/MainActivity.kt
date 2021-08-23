@@ -4,22 +4,23 @@ import android.os.PersistableBundle
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MessageData(
-    val content : String
-    val writer : String ) {
 
-
-
-
-}
 
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.nepplus.numberbaseballgame_20210823.Adapters.Message_Adapters
+import com.nepplus.numberbaseballgame_20210823.Datas.MessageData
 
 class MainActivity : AppCompatActivity() {
 
     val mMessageList = ArrayList<MessageData>()
+
+    lateinit var mAdapter : Message_Adapters
+
+    //세자리 문제 숫자를 저장하기 위한 Arraylist
+
+    val mQuestionNumers = ArrayList<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
@@ -30,10 +31,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //세자리 랜덤 문제 만들기
+
+        makeQuestionNumbers()
+
+
         mMessageList.add( MessageData("안녕하세요", "CPU"))
         mMessageList.add( MessageData("반갑습니다", "User"))
 
-        mAdapter = MessageAdapter(this, R.layout, Message_list_item, mMessageList)
+        mAdapter = MessageAdapter(this, R.layout, list, mMessageList)
         messageListView.adapter = mAdapter
 
         okBtn.setOnClickListener {
@@ -55,6 +61,31 @@ class MainActivity : AppCompatActivity() {
 
 
         }
+
+
+    }
+
+    fun makeQuestionNumbers() {
+
+        //고정된 세개 숫자를 임시 문제로
+
+        mQuestionNumers.add(4)
+        mQuestionNumers.add(7)
+        mQuestionNumers.add(1)
+
+        //환영메세지를 채팅창에 채우자
+        //메세지 리스트에 띄어줄 말을 데이터를 추가하자
+
+         mMessageList.add(MessageData("어서오세요", "CPU"))
+        mMessageList.add(MessageData("숫자 야구 게임입니다", "CPU"))
+        mMessageList.add(MessageData("세자리 숫자를 맞춰주세요", "CPU"))
+
+
+
+
+
+
+
 
 
 
