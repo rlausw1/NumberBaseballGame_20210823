@@ -46,9 +46,12 @@ class MainActivity : AppCompatActivity() {
 
             mAdapter.notifyDataSetChanged()
 
-            //numberEdt 문구 비워
+            //numberEdt 문구 비워주기
 
             numberEdt.setText("")
+
+            //문구 비운 뒤 리스트뷰 최하단으로 내리고 싶다
+            messageListView.smoothScrollToPosition(mMessageList.size -1)
 
 
         }
